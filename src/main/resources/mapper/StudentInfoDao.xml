@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mp.demo.dao.StudentInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.mp.demo.entity.StudentInfo">
+        <id column="student_id" property="studentId"/>
+        <result column="student_name" property="studentName"/>
+        <result column="student_age" property="studentAge"/>
+    </resultMap>
+
+    <select id="fuzzySelectByName" parameterType="String" resultMap="BaseResultMap">
+        select student_id,student_name,student_age
+        from student_info
+        where student_name like concat('%',#{name},'%')
+    </select>
+
+</mapper>
